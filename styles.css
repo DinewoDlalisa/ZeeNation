@@ -5,18 +5,19 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f8f9fa;
-    font-family: Arial, sans-serif;
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
 }
 
 .envelope {
     position: relative;
-    width: 300px;
-    height: 200px;
-    background-color: #fff;
-    border: 2px solid #ddd;
+    width: 320px;
+    height: 220px;
+    background: linear-gradient(145deg, #e1e1e1, #ffffff);
+    border: 1px solid #d1d1d1;
     border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease-in-out;
 }
 
@@ -26,10 +27,25 @@ body {
     left: 0;
     width: 100%;
     height: 50%;
-    background-color: #ff6b81;
+    background: linear-gradient(145deg, #ff6b81, #ff4b61);
+    border-bottom: 1px solid #d1d1d1;
     transform-origin: top;
     transition: transform 0.4s ease-in-out;
     z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(145deg, #ffffff, #e1e1e1);
+    border-top: 1px solid #d1d1d1;
+    z-index: 1;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
 }
 
 .heart {
@@ -57,4 +73,61 @@ body {
 .message p {
     margin: 0;
     font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.background-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background-hearts div {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 107, 129, 0.7);
+    border-radius: 50%;
+    animation: moveHeart 8s linear infinite;
+}
+
+.background-hearts div:nth-child(odd) {
+    animation-duration: 10s;
+    background-color: rgba(255, 107, 129, 0.4);
+}
+
+.angel {
+    position: absolute;
+    bottom: 10px;
+    right: -100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: right 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.angel-body {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.flower {
+    font-size: 1.5rem;
+}
+
+@keyframes moveHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
 }
